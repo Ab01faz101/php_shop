@@ -40,7 +40,10 @@ function url($url)
     return trim(BASE_URL , '/') . '/' . trim($url , '/');
 }
 
-
+function asset($path)
+{
+    return trim(BASE_URL , '/') . '/' . trim($path , '/');
+}
 
 
 
