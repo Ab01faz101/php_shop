@@ -54,7 +54,7 @@ use App\Models\ProductCategory;
                                             <tr>
                                                 <td><?= $productItem['name'] ?></td>
                                                 <td>
-                                                    <img src="<?= publicAsset($productItem['image']) ?>"
+                                                    <img style="max-width: 300px!important;" src="<?= publicAsset($productItem['image']) ?>"
                                                          alt="">
                                                 </td>
                                                 <td><?= $category['name'] ?></td>

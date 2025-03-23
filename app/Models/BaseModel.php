@@ -22,6 +22,25 @@ class BaseModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function where($conditions)
+    {
+        $query = "SELECT * FROM {$this->table} WHERE ";
+        $params = [];
+        $clauses = [];
+
+        foreach ($conditions as $column => $value) {
+            $clauses[] = "{$column} = :{$column}";
+            $params[$column] = $value;
+        }
+
+        $query .= implode(' AND ', $clauses);
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute($params);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
     public function find($id)
     {
         $stmt = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE id = :id");
