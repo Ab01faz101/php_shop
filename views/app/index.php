@@ -145,6 +145,7 @@
             </div>
         </footer>
     </div>
+    
     <script src="<?= asset('assets/js/vendor/jquery-3.4.1.min.js') ?>"></script>
     <script src="<?= asset('assets/js/vendor/popper.min.js') ?>"></script>
     <script src="<?= asset('assets/js/vendor/bootstrap.min.js') ?>"></script>
