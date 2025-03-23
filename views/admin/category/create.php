@@ -14,30 +14,37 @@
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
-
     <?php view('admin.layout.aside')?>
+
+
 
     <div class="content-wrapper">
         <section class="content">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="invoice p-3 mb-3">
-                            <div class="row">
-                                <div class="col-12 table-responsive">
-                                    <h1 class="text-xl font-bold" style="text-align: center;">خوش آمدید</h1>
-                                    <section style="clear: both;"></section>
-                                </div>
-                            </div>
-                        </div>
+
+            <a href="<?= url('admin/category') ?>" class="btn btn-primary my-3" >برگشت به دستی بندی ها</a>
+
+
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="card-header">
+                        <h3 class="card-title"></h3>
                     </div>
+                    <form action="<?= url('admin/category/store') ?>" method="post" class="col-12" id="barcodeForm">
+                        <div class="form-group mx-1" style="display: inline-block;">
+                            <label>نام دسته بندی</label>
+                            <input name="name" id="barcode" type="text" class="form-control" placeholder="" required>
+                        </div>
+                        <div>
+                            <input type="submit" class="btn btn-primary" value="ثبت اطلاعات" style="cursor: pointer;">
+                        </div>
+                    </form>
                 </div>
-            </div>
+            </section>
         </section>
     </div>
 </div>
 <script src="<?= asset('admin_assets/plugins/jquery/jquery.min.js') ?>"></script>
 <script src="<?= asset('admin_assets/plugins/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
-<script src="<?= asset('admin_assets/dist/js/adminlte.js')?>"></script>
+<script src="<?= asset('admin_assets/dist/js/adminlte.js') ?>"></script>
 </body>
 </html>

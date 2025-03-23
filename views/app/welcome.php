@@ -38,7 +38,7 @@
                             </div>
                             <h5 class="text-center font-weight-bold">حساب کاربری شما ساخته شد</h5>
                             <div class="text-center mt-5 mb-4">
-                                <a href="index.php" class="btn-primary-cm btn-with-icon">
+                                <a href="../../index.php" class="btn-primary-cm btn-with-icon">
                                     <i class="mdi mdi-account-circle-outline"></i>
                                     صفحه اصلی
                                 </a>

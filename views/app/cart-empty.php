@@ -305,7 +305,7 @@
                                     <i class="mdi mdi-cart-remove"></i>
                                 </div>
                                 <p class="cart-empty-title">سبد خرید شما خالی است!</p>
-                                <a href="index.php" class="btn-primary-cm">صفحه اصلی</a>
+                                <a href="../../index.php" class="btn-primary-cm">صفحه اصلی</a>
                             </div>
                         </div>
                     </div>

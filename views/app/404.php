@@ -8,18 +8,18 @@
     <meta name="msapplication-navbutton-color" content="#ffa500">
     <meta name="apple-mobile-web-app-status-bar-style" content="#ffa500">
     <title>صفحه 404</title>
-    <link rel="stylesheet" href="./assets/css/vendor/font-awesome.min.css">
-    <link rel="stylesheet" href="./assets/css/vendor/materialdesignicons.min.css">
-    <link rel="stylesheet" href="./assets/css/vendor/bootstrap.min.css">
-    <link rel="stylesheet" href="./assets/css/vendor/bootstrap-slider.min.css">
-    <link rel="stylesheet" href="./assets/css/vendor/owl.carousel.min.css">
-    <link rel="stylesheet" href="./assets/css/vendor/jquery.horizontalmenu.css">
-    <link rel="stylesheet" href="./assets/css/vendor/jquery-stack-menu.min.css">
-    <link rel="stylesheet" href="./assets/css/vendor/fancybox.min.css">
-    <link rel="stylesheet" href="./assets/css/vendor/nice-select.css">
-    <link rel="stylesheet" href="./assets/css/vendor/nouislider.min.css">
-    <link rel="stylesheet" href="./assets/css/main.css">
-</head>
+    <link rel="stylesheet" href="./pulbic/assets/css/vendor/font-awesome.min.css">
+    <link rel="stylesheet" href="./pulbic/assets/css/vendor/materialdesignicons.min.css">
+    <link rel="stylesheet" href="./pulbic/assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="./pulbic/assets/css/vendor/bootstrap-slider.min.css">
+    <link rel="stylesheet" href="./pulbic/assets/cs s/vendor/owl.carousel.min.css">
+    <link rel="stylesheet" href="./pulbic/assets/css/vendor/jquery.horizontalmenu.css">
+    <link rel="stylesheet" href="./pulbic/assets/css/vendor/jquery-stack-menu.min.css">
+    <link rel="stylesheet" href="./pulbic/assets/css/vendor/fancybox.min.css">
+    <link rel="stylesheet" href="./pulbic/assets/css/vendor/nice-select.css">
+    <link rel="stylesheet" href="./pulbic/assets/css/vendor/nouislider.min.css">
+    <link rel="stylesheet" href="./pulbic/assets/css/main.css">
+</head>pulbic/
 <body>
     <div class="wrapper">
         <header class="main-header">
@@ -302,7 +302,7 @@
                         <div class="dt-sl pt-3 pb-5">
                             <div class="error-page text-center">
                                 <h1>صفحه‌ای که دنبال آن بودید پیدا نشد!</h1>
-                                <a href="index.php" class="btn-primary-cm">ادامه خرید در صفحه اصلی</a>
+                                <a href="../../index.php" class="btn-primary-cm">ادامه خرید در صفحه اصلی</a>
                                 <img src="./assets/img/theme/404.png" class="img-fluid" width="60%" alt="">
                             </div>
                         </div>

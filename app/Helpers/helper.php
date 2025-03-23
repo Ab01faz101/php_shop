@@ -42,7 +42,7 @@ function url($url)
 
 function asset($path)
 {
-    return trim(BASE_URL , '/') . '/' . trim($path , '/');
+    return trim(BASE_URL , '/') . '/public/' . trim($path , '/');
 }
 
 
@@ -88,3 +88,8 @@ function view($path, $data = [])
 
 
 
+function redirect($route)
+{
+    $url = url($route);
+    header('Location: '.$url);
+}
