@@ -95,5 +95,26 @@ function view($path, $data = [])
 function redirect($route)
 {
     $url = url($route);
-    header('Location: '.$url);
+    return header('Location: '.$url);
 }
+
+
+
+function flash($key, $value = null) {
+    if (!isset($_SESSION['flash'])) {
+        $_SESSION['flash'] = [];
+    }
+
+    if ($value === null) {
+        if (isset($_SESSION['flash'][$key])) {
+            $message = $_SESSION['flash'][$key];
+            unset($_SESSION['flash'][$key]);
+            return $message;
+        }
+        return null; 
+    } else {
+        $_SESSION['flash'][$key] = $value;
+    }
+}
+
+
