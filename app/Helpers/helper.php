@@ -45,6 +45,10 @@ function asset($path)
     return trim(BASE_URL , '/') . '/public/' . trim($path , '/');
 }
 
+function publicAsset($path)
+{
+    return trim(BASE_URL , '/') . '/' . trim($path , '/');
+}
 
 
 

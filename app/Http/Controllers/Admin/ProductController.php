@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Product;
+use App\Models\ProductCategory;
+use Core\FileManager;
 use Core\Request;
 use Core\Validator;
 
@@ -11,28 +13,35 @@ class ProductController
     public function index()
     {
         $product = new Product();
-        $categories = $product->getAll();
-        return view('admin.product.index', compact('categories'));
+        $products = $product->getAll();
+        return view('admin.product.index', compact('products'));
     }
 
     public function create()
     {
-        return view('admin.product.create');
+        $category = new ProductCategory();
+        $categories = $category->getAll();
+        return view('admin.product.create', compact('categories'));
     }
 
     public function store()
     {
         $request = new Request();
         $inputs = $request->post();
+        $image = $_FILES['image'];
         $validator = new Validator();
         $rules = [
             'name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'category_id' => 'required',
         ];
         $valid = $validator->validate($inputs, $rules);
         if (!$valid) {
             redirect('admin/product/create');
         }
-
+        $fileManager = new FileManager('public/images/products/');
+        $inputs['image'] = $fileManager->uploadFile($_FILES['image']);
         $product = new Product();
         $product->create($inputs);
         redirect('admin/product');
@@ -44,26 +53,38 @@ class ProductController
         $id = $request->get();
         $productModel = new Product();
         $product = $productModel->find($id['id']);
-
-        return view('admin.product.update', compact('product'));
+        $category = new ProductCategory();
+        $categories = $category->getAll();
+        return view('admin.product.update', compact('product', 'categories'));
     }
 
     public function update()
     {
         $request = new Request();
-        $id = $request->get();
         $inputs = $request->post();
+        $id = $request->get();
         $productModel = new Product();
         $product = $productModel->find($id['id']);
+        if (isset($_FILES['image'])) {
+            $image = $_FILES['image'];
+        }
         $validator = new Validator();
         $rules = [
             'name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'category_id' => 'required',
         ];
         $valid = $validator->validate($inputs, $rules);
         if (!$valid) {
-            redirect('admin/product/edit?id=' . $product['id']);
+            redirect('admin/product/create');
         }
-
+        if (isset($_FILES['image']) && !empty($_FILES['image']['tmp_name'])) {
+            $fileManager = new FileManager('public/images/products/');
+            $inputs['image'] = $fileManager->uploadFile($_FILES['image']);
+        }else{
+            $inputs['image'] = $product['image'];
+        }
         $productModel->update($id['id'] , $inputs);
         redirect('admin/product');
     }

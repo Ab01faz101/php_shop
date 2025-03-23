@@ -40,13 +40,13 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="data.php" class="nav-link">
+                                <a href="<?= url('admin/category') ?>" class="nav-link">
                                     <i class="fa fa-circle-o nav-icon"></i>
                                     <p>دسته بندی</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="detailData.php" class="nav-link">
+                                <a href="<?= url('admin/product') ?>" class="nav-link">
                                     <i class="fa fa-circle-o nav-icon"></i>
                                     <p>مدیریت محصولات</p>
                                 </a>
