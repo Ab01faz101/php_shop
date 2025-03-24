@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 23, 2025 at 08:02 AM
+-- Generation Time: Mar 24, 2025 at 03:56 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -579,8 +579,9 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `image`, `slug`, `price`, `category_id`, `short_description`, `description`) VALUES
-(1, 'نام محصول1', 'public/images/products/flutter.png', NULL, '2', 2, NULL, ' عکس محصول'),
-(2, 'نام محصول', 'public/images/products/android.png', NULL, '2', 2, NULL, ' عکس محصول');
+(1, 'آموزش فلاتر', 'public/images/products/flutter.png', NULL, '200000', 2, NULL, 'توضیحات محصول'),
+(2, 'برنامه نویسی اندروید', 'public/images/products/android.png', NULL, '300000', 2, NULL, ' عکس محصول'),
+(3, 'آموزش html', 'public/images/products/html.jpg', NULL, '250000', 3, NULL, 'توضیحات محصول توضیحات محصول');
 
 -- --------------------------------------------------------
 
@@ -601,7 +602,8 @@ CREATE TABLE `product_categories` (
 --
 
 INSERT INTO `product_categories` (`id`, `name`, `parent_id`, `image`, `slug`) VALUES
-(2, 'برنامه نویسی موبایل', NULL, NULL, NULL);
+(2, 'برنامه نویسی موبایل', NULL, NULL, NULL),
+(3, 'برنامه نویسی وب', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -656,18 +658,26 @@ INSERT INTO `provinces` (`id`, `name`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usres`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `usres` (
+CREATE TABLE `users` (
   `id` bigint UNSIGNED NOT NULL,
   `first_fname` varchar(255) DEFAULT NULL,
   `last_name` varchar(255) DEFAULT NULL,
   `national_code` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `phone` varchar(255) DEFAULT NULL,
-  `profile` varchar(255) DEFAULT NULL
+  `profile` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `first_fname`, `last_name`, `national_code`, `email`, `phone`, `profile`, `password`) VALUES
+(16, NULL, NULL, NULL, 'ar.rahmatyy@gmail.com', NULL, NULL, 'ar.rahmatyy@gmail.com2');
 
 --
 -- Indexes for dumped tables
@@ -706,9 +716,9 @@ ALTER TABLE `provinces`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `usres`
+-- Indexes for table `users`
 --
-ALTER TABLE `usres`
+ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -731,13 +741,13 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `product_categories`
 --
 ALTER TABLE `product_categories`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `provinces`
@@ -746,10 +756,10 @@ ALTER TABLE `provinces`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
--- AUTO_INCREMENT for table `usres`
+-- AUTO_INCREMENT for table `users`
 --
-ALTER TABLE `usres`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+ALTER TABLE `users`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables
