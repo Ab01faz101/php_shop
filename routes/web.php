@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Panel\PanelController;
 use Core\Router;
 
 $router = Router::getInstance();
@@ -34,15 +35,21 @@ $router->addRoute('POST', '/admin/product/delete', ProductController::class, 'de
 // auth
 $router->addRoute('GET', '/auth/login', AuthController::class, 'loginView');
 $router->addRoute('GET', '/auth/register', AuthController::class, 'registerView');
-$router->addRoute('GET', '/auth/chage-password', AuthController::class, 'passwordChangeView');
+$router->addRoute('GET', '/auth/change-password', AuthController::class, 'passwordChangeView');
 
 
 $router->addRoute('POST', '/auth/login', AuthController::class, 'login');
 $router->addRoute('POST', '/auth/register', AuthController::class, 'register');
 $router->addRoute('POST', '/auth/password', AuthController::class, 'passwordChange');
-$router->addRoute('GET', '/auth/logout', AuthController::class, action: 'logout');
+$router->addRoute('GET', '/auth/logout', AuthController::class,  'logout');
 
 
+// panel
+$router->addRoute('GET', '/panel',PanelController::class, 'panel');
+$router->addRoute('GET', '/panel/personal',PanelController::class, 'personal');
+$router->addRoute('GET', '/panel/address',PanelController::class, 'address');
+$router->addRoute('GET', '/panel/personal/edit',PanelController::class, 'personalEdit');
+$router->addRoute('POST', '/panel/personal/edit',PanelController::class, 'personalUpdate');
 
 
 

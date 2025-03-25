@@ -11,7 +11,7 @@ use App\Http\Controllers\Controller;
 use Core\Auth;
 class AuthController extends Controller
 {
-    private function chckAuth()
+    private function checkAuth()
     {
         if (Auth::check()) {
             redirect('/');
@@ -19,20 +19,22 @@ class AuthController extends Controller
     }
     public function loginView()
     {
-        $this->chckAuth();
+        $this->checkAuth();
         return view("app.auth.login");
     }
 
 
     public function registerView()
     {
-        $this->chckAuth();
+        $this->checkAuth();
         return view("app.auth.register");
     }
 
     public function passwordChangeView()
     {
-        $this->chckAuth();
+        if (!Auth::check()){
+            redirect('auth/login');
+        }
         return view("app.auth.password");
     }
 
@@ -82,6 +84,7 @@ class AuthController extends Controller
             redirect('/');
         } else {
             flash('error', 'ورود موفقیت آمیز نبود');
+            redirect('auth/login');
         }
     }
 

@@ -98,6 +98,11 @@ function redirect($route)
     return header('Location: '.$url);
 }
 
+function redirectBack()
+{
+    header("Location: " . $_SERVER['HTTP_REFERER']);
+    exit;
+}
 
 
 function flash($key, $value = null) {
