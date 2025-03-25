@@ -8,6 +8,7 @@ use App\Models\User;
 use Core\Auth;
 use Core\FileManager;
 use Core\Request;
+use Core\Validator;
 
 class PanelController extends Controller
 {
@@ -53,6 +54,30 @@ class PanelController extends Controller
         $addressModel = new Address();
         $addresses = $addressModel->where(['user_id' => $user['id']]);
         return view('app.panel.profile-addresses' , compact('user' , 'addresses'));
+    }
+
+    public function storeAddress()
+    {
+        $request = new Request();
+        $inputs = $request->post();
+        $validator = new Validator();
+        $rules = [
+            'name' => 'required',
+            'phone' => 'required',
+            'province_id' => 'required',
+            'city_id' => 'required',
+            'address' => 'required',
+            'post_code' => 'required',
+        ];
+        dd($inputs);
+
+        $valid = $validator->validate($inputs, $rules);
+        if (!$valid) {
+            redirectBack();
+        }
+
+
+
     }
     
 

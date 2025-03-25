@@ -51,6 +51,8 @@ $router->addRoute('GET', '/panel/address',PanelController::class, 'address');
 $router->addRoute('GET', '/panel/personal/edit',PanelController::class, 'personalEdit');
 $router->addRoute('POST', '/panel/personal/edit',PanelController::class, 'personalUpdate');
 
+// address
+$router->addRoute('POST', '/panel/address/store',PanelController::class, 'storeAddress');
 
 
 

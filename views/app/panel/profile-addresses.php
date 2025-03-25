@@ -126,7 +126,7 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-12">
                             <div class="form-ui dt-sl">
-                                <form class="form-account" action="">
+                                <form class="form-account" method="post" action="<?= url('panel/address/store') ?>">
                                     <div class="row">
                                         <div class="col-md-6 col-sm-12 mb-2">
                                             <div class="form-row-title">
@@ -135,7 +135,7 @@
                                                 </h4>
                                             </div>
                                             <div class="form-row">
-                                                <input class="input-ui pr-2 text-right" type="text"
+                                                <input name="name" class="input-ui pr-2 text-right" type="text"
                                                        placeholder="نام خود را وارد نمایید">
                                             </div>
                                         </div>
@@ -146,7 +146,7 @@
                                                 </h4>
                                             </div>
                                             <div class="form-row">
-                                                <input class="input-ui pl-2 dir-ltr text-left" type="text"
+                                                <input name="phone" class="input-ui pl-2 dir-ltr text-left" type="text"
                                                        placeholder="09xxxxxxxxx">
                                             </div>
                                         </div>
@@ -158,7 +158,7 @@
                                             </div>
                                             <div class="form-row">
                                                 <div class="custom-select-ui">
-                                                    <select class="right">
+                                                    <select name="province_id" class="right">
                                                         <option value="tehran">
                                                             تهران
                                                         </option>
@@ -183,7 +183,7 @@
                                             </div>
                                             <div class="form-row">
                                                 <div class="custom-select-ui">
-                                                    <select class="right">
+                                                    <select name="city_id" class="right">
                                                         <option value="tehran">
                                                             تهران
                                                         </option>
@@ -207,7 +207,7 @@
                                                 </h4>
                                             </div>
                                             <div class="form-row">
-                                                    <textarea class="input-ui pr-2 text-right"
+                                                    <textarea name="address" class="input-ui pr-2 text-right"
                                                               placeholder=" آدرس را وارد نمایید"></textarea>
                                             </div>
                                         </div>
@@ -218,12 +218,12 @@
                                                 </h4>
                                             </div>
                                             <div class="form-row">
-                                                <input class="input-ui pl-2 dir-ltr text-left placeholder-right"
+                                                <input name="post_code" class="input-ui pl-2 dir-ltr text-left placeholder-right"
                                                        type="text" placeholder=" کد پستی را بدون خط تیره بنویسید">
                                             </div>
                                         </div>
                                         <div class="col-12 pr-4 pl-4">
-                                            <button type="button" class="btn btn-sm btn-primary btn-submit-form">ثبت
+                                            <button type="submit" class="btn btn-sm btn-primary btn-submit-form">ثبت
                                             </button>
                                             <button type="button" class="btn-link-border float-left mt-2">انصراف
                                                 و بازگشت
