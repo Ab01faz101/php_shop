@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
 use App\Models\Address;
+use App\Models\Province;
 use App\Models\User;
 use Core\Auth;
 use Core\FileManager;
@@ -53,7 +54,12 @@ class PanelController extends Controller
         $user = Auth::user();
         $addressModel = new Address();
         $addresses = $addressModel->where(['user_id' => $user['id']]);
-        return view('app.panel.profile-addresses' , compact('user' , 'addresses'));
+        $provinceModel = new Province();
+        $cityModel = new Province();
+        $provinces = $provinceModel->getAll();
+        $cities = $cityModel->getAll();
+        return view('app.panel.profile-addresses' ,
+         compact('user' , 'provinces' , 'cities' , 'addresses'));
     }
 
     public function storeAddress()
@@ -69,15 +75,16 @@ class PanelController extends Controller
             'address' => 'required',
             'post_code' => 'required',
         ];
-        dd($inputs);
 
         $valid = $validator->validate($inputs, $rules);
         if (!$valid) {
             redirectBack();
         }
-
-
-
+        $user = Auth::user();
+        $addressModel = new Address();
+        $inputs['user_id'] = $user['id'];
+        $addressModel->create($inputs);
+        redirectBack();
     }
     
 
