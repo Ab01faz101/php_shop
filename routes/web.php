@@ -56,6 +56,7 @@ $router->addRoute('GET', '/auth/logout', AuthController::class, action: 'logout'
 
 // site routes
 $router->addRoute('GET', '/', HomeController::class, 'index');
+$router->addRoute('GET', '/product', HomeController::class, 'product');
 
 
 $router->resolve();

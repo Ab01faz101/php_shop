@@ -43,15 +43,15 @@
                                     ?>
                                     <div class="item">
                                         <div class="product-card mb-3">
-                                            <a class="product-thumb" href="">
+                                            <a class="product-thumb" href="<?= url('product?id=' . $mobileProductItem['id']) ?>">
                                                 <img src="<?= publicAsset($mobileProductItem['image']) ?>"
                                                     alt="Product Thumbnail">
                                             </a>
                                             <div class="product-card-body">
                                                 <h5 class="product-title">
-                                                    <a href=""><?= $mobileProductItem['name'] ?></a>
+                                                    <a href="<?= url('product?id=' . $mobileProductItem['id']) ?>"><?= $mobileProductItem['name'] ?></a>
                                                 </h5>
-                                                <a class="product-meta" href=""><?= $mobileCategory['name'] ?></a>
+                                                <a class="product-meta" href="<?= url('product?id=' . $mobileProductItem['id']) ?>"><?= $mobileCategory['name'] ?></a>
                                                 <span class="product-price"><?= $mobileProductItem['price'] ?></span>
                                             </div>
                                         </div>
@@ -97,20 +97,20 @@
                         </div>
                         <div class="col-12">
                             <div class="product-carousel carousel-lg owl-carousel owl-theme">
-                                <?php foreach ($webProducts as $mobileProductItem) {
+                                <?php foreach ($webProducts as $webProductItem) {
                                     ?>
                                     <div class="item">
-                                        <div class="product-card mb-3">
-                                            <a class="product-thumb" href="">
-                                                <img src="<?= publicAsset($mobileProductItem['image']) ?>"
+                                        <div  class="product-card mb-3">
+                                            <a class="product-thumb"  href="<?= url('product?id=' . $webProductItem['id']) ?>">
+                                                <img src="<?= publicAsset($webProductItem['image']) ?>"
                                                     alt="Product Thumbnail">
                                             </a>
                                             <div class="product-card-body">
                                                 <h5 class="product-title">
-                                                    <a href=""><?= $webCategory['name'] ?></a>
+                                                    <a  href="<?= url('product?id=' . $webProductItem['id']) ?>"><?= $webCategory['name'] ?></a>
                                                 </h5>
-                                                <a class="product-meta" href=""><?= $mobileCategory['name'] ?></a>
-                                                <span class="product-price"><?= $mobileProductItem['price'] ?></span>
+                                                <a class="product-meta" href="<?= url('product?id=' . $webProductItem['id']) ?>"><?= $webCategory['name'] ?></a>
+                                                <span class="product-price"><?= $webProductItem['price'] ?></span>
                                             </div>
                                         </div>
                                     </div>

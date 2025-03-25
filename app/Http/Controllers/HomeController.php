@@ -25,18 +25,16 @@ class HomeController extends Controller
          compact('mobileCategory' ,'webCategory' , 'mobileProducts' , 'webProducts'));
     }
 
-    public function store(){
+    public function product()
+    {
         $request = new Request();
-        $data = $request->post();
-        $validator = new Validator();
-        $rules = [
-            'email' => 'required|email',
-            'password' => 'required|min:8',
-        ];
-        $valid = $validator->validate($data, $rules);
-
-
-        dd($valid);
+        $id = $request->get()['id'];
+        $productModel = new Product();
+        $product = $productModel->find($id);
+        $categoryModel = new ProductCategory();
+        $category = $categoryModel->find($product['category_id']);
+        $products = $productModel->where(['category_id' => $product['category_id']]);
+        return view('app.single-product' , compact('product' , 'category' , 'products'));
     }
 
 }
