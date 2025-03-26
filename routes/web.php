@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\Panel\PanelController;
 use Core\Router;
 
@@ -53,9 +54,19 @@ $router->addRoute('POST', '/panel/personal/edit',PanelController::class, 'person
 
 // address
 $router->addRoute('POST', '/panel/address/store',PanelController::class, 'storeAddress');
+$router->addRoute('GET', '/panel/address/delete',PanelController::class, 'deleteAddress');
+$router->addRoute('POST', '/panel/address/get-city',PanelController::class, 'getCity');
 
+// order ---------------------------------------------------------------------------------------------------------------
+$router->addRoute('GET', '/cart',OrderController::class, 'cart');
+$router->addRoute('GET', '/cart/add',OrderController::class, 'addToCart');
+$router->addRoute('GET', '/cart/remove',OrderController::class, 'removeToCart');
+$router->addRoute('GET', '/cart/plus',OrderController::class, 'removeToCart');
+$router->addRoute('GET', '/cart/min',OrderController::class, 'removeToCart');
 
-
+// create order
+$router->addRoute('GET', '/order',OrderController::class, 'order');
+$router->addRoute('POST', '/order/store',OrderController::class, 'orderStore');
 
 
 
@@ -65,6 +76,7 @@ $router->addRoute('POST', '/panel/address/store',PanelController::class, 'storeA
 
 // site routes
 $router->addRoute('GET', '/', HomeController::class, 'index');
+$router->addRoute('GET', '/welcome', HomeController::class, 'welcome');
 $router->addRoute('GET', '/product', HomeController::class, 'product');
 
 

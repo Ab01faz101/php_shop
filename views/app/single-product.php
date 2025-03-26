@@ -96,10 +96,12 @@
                                             <div class="product-seller-row product-seller-row--add-to-cart">
                                                 <a
                                                     <?php if (!\Core\Auth::check()) { ?>
-                                                        href="<?=url('auth/login')?>"
-                                                        <?php } ?>
+                                                        href="<?= url('auth/login') ?>"
+                                                    <?php } else { ?>
+                                                        href="<?= url('cart/add?product_id=' . $product['id']) ?>"
+                                                    <?php } ?>
 
-                                                   class="btn-add-to-cart btn-add-to-cart--full-width">
+                                                        class="btn-add-to-cart btn-add-to-cart--full-width">
                                                     <span class="btn-add-to-cart-txt">افزودن به سبد خرید</span>
                                                 </a>
                                             </div>
@@ -123,28 +125,28 @@
                         <div class="product-carousel carousel-lg owl-carousel owl-theme">
                             <?php foreach ($products as $productItem) { ?>
                                 <div class=" item">
-                                                <div class="product-card mb-3">
-                                                    <a class="product-thumb"
-                                                       href="<?= url('product?id=' . $productItem['id']) ?>">
-                                                        <img src="<?= publicAsset($productItem['image']) ?>"
-                                                             alt="Product Thumbnail">
-                                                    </a>
-                                                    <div class="product-card-body">
-                                                        <h5 class="product-title">
-                                                            <a href="<?= url('product?id=' . $productItem['id']) ?>"><?= ($productItem['name']) ?></a>
-                                                        </h5>
-                                                        <a class="product-meta"
-                                                           href="<?= url('product?id=' . $productItem['id']) ?>"><?= ($category['name']) ?></a>
-                                                        <span class="product-price"><?= ($productItem['price']) ?> تومان</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <?php } ?>
+                                    <div class="product-card mb-3">
+                                        <a class="product-thumb"
+                                           href="<?= url('product?id=' . $productItem['id']) ?>">
+                                            <img src="<?= publicAsset($productItem['image']) ?>"
+                                                 alt="Product Thumbnail">
+                                        </a>
+                                        <div class="product-card-body">
+                                            <h5 class="product-title">
+                                                <a href="<?= url('product?id=' . $productItem['id']) ?>"><?= ($productItem['name']) ?></a>
+                                            </h5>
+                                            <a class="product-meta"
+                                               href="<?= url('product?id=' . $productItem['id']) ?>"><?= ($category['name']) ?></a>
+                                            <span class="product-price"><?= ($productItem['price']) ?> تومان</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            </section>
+                            <?php } ?>
                         </div>
+                    </div>
+                </div>
+            </section>
+        </div>
     </main>
     <footer class="main-footer dt-sl">
         <div class="description">

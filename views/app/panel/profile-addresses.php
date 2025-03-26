@@ -49,7 +49,7 @@
                                         <div class="col-lg-6 col-md-12">
                                             <div class="card-horizontal-address">
                                                 <div class="card-horizontal-address-desc">
-                                                    <h4 class="card-horizontal-address-full-name">نام کاربر</h4>
+                                                    <h4 class="card-horizontal-address-full-name"><?= $addressItem['name'] ?></h4>
                                                     <p>
                                                         آدرس
                                                     </p>
@@ -58,18 +58,17 @@
                                                     <ul class="card-horizontal-address-methods float-right">
                                                         <li class="card-horizontal-address-method">
                                                             <i class="mdi mdi-email-outline"></i>
-                                                            کدپستی : <span>۹۹۹۹۹۹۹۹۹۹</span>
+                                                            کدپستی : <span><?= $addressItem['post_code'] ?></span>
                                                         </li>
                                                         <li class="card-horizontal-address-method">
                                                             <i class="mdi mdi-cellphone-iphone"></i>
-                                                            تلفن همراه : <span>09xxxxxxxxx</span>
+                                                            تلفن همراه : <span><?= $addressItem['phone'] ?></span>
                                                         </li>
                                                     </ul>
                                                     <div class="card-horizontal-address-actions">
-                                                        <button class="btn-note" data-toggle="modal"
-                                                                data-target="#modal-location-edit">ویرایش
-                                                        </button>
-                                                        <button class="btn-note" data-toggle="modal"
+
+                                                        <button class="btn-note deleteAddressButton" data-toggle="modal"
+                                                                data-url="<?= url('panel/address/delete?id='. $addressItem['id']) ?>"
                                                                 data-target="#remove-location">حذف
                                                         </button>
                                                     </div>
@@ -159,18 +158,9 @@
                                             <div class="form-row">
                                                 <div class="custom-select-ui">
                                                     <select name="province_id" class="right">
-                                                        <option value="tehran">
-                                                            تهران
-                                                        </option>
-                                                        <option value="esfahan">
-                                                            اصفهان
-                                                        </option>
-                                                        <option value="shiraz">
-                                                            شیراز
-                                                        </option>
-                                                        <option value="tabriz">
-                                                            تبریز
-                                                        </option>
+                                                        <?php foreach ($provinces as $provinceItem) { ?>
+                                                            <option value="<?= $provinceItem['id'] ?>"><?= $provinceItem['name'] ?></option>
+                                                        <?php } ?>
                                                     </select>
                                                 </div>
                                             </div>
@@ -184,18 +174,10 @@
                                             <div class="form-row">
                                                 <div class="custom-select-ui">
                                                     <select name="city_id" class="right">
-                                                        <option value="tehran">
-                                                            تهران
-                                                        </option>
-                                                        <option value="esfahan">
-                                                            اصفهان
-                                                        </option>
-                                                        <option value="shiraz">
-                                                            شیراز
-                                                        </option>
-                                                        <option value="tabriz">
-                                                            تبریز
-                                                        </option>
+                                                        <?php foreach ($cities as $cityItem) { ?>
+                                                            <option data-province="<?= $cityItem['province_id'] ?>"
+                                                                    value="<?= $cityItem['id'] ?>"><?= $cityItem['name'] ?></option>
+                                                        <?php } ?>
                                                     </select>
                                                 </div>
                                             </div>
@@ -218,7 +200,8 @@
                                                 </h4>
                                             </div>
                                             <div class="form-row">
-                                                <input name="post_code" class="input-ui pl-2 dir-ltr text-left placeholder-right"
+                                                <input name="post_code"
+                                                       class="input-ui pl-2 dir-ltr text-left placeholder-right"
                                                        type="text" placeholder=" کد پستی را بدون خط تیره بنویسید">
                                             </div>
                                         </div>
@@ -243,140 +226,6 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="modal-location-edit" role="dialog" aria-labelledby="exampleModalCenterTitle"
-         aria-hidden="true">
-        <div class="modal-dialog modal-lg send-info modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">
-                        <i class="now-ui-icons location_pin"></i>
-                        ویرایش آدرس
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-12">
-                            <div class="form-ui dt-sl">
-                                <form class="form-account" action="">
-                                    <div class="row">
-                                        <div class="col-md-6 col-sm-12 mb-2">
-                                            <div class="form-row-title">
-                                                <h4>
-                                                    نام و نام خانوادگی
-                                                </h4>
-                                            </div>
-                                            <div class="form-row">
-                                                <input class="input-ui pr-2 text-right" type="text"
-                                                       placeholder="نام خود را وارد نمایید">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-sm-12 mb-2">
-                                            <div class="form-row-title">
-                                                <h4>
-                                                    شماره موبایل
-                                                </h4>
-                                            </div>
-                                            <div class="form-row">
-                                                <input class="input-ui pl-2 dir-ltr text-left" type="text"
-                                                       placeholder="09xxxxxxxxx">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-sm-12 mb-2">
-                                            <div class="form-row-title">
-                                                <h4>
-                                                    استان
-                                                </h4>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="custom-select-ui">
-                                                    <select class="right">
-                                                        <option value="tehran">
-                                                            تهران
-                                                        </option>
-                                                        <option value="esfahan">
-                                                            اصفهان
-                                                        </option>
-                                                        <option value="shiraz">
-                                                            شیراز
-                                                        </option>
-                                                        <option value="tabriz">
-                                                            تبریز
-                                                        </option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-sm-12 mb-2">
-                                            <div class="form-row-title">
-                                                <h4>
-                                                    شهر
-                                                </h4>
-                                            </div>
-                                            <div class="form-row">
-                                                <div class="custom-select-ui">
-                                                    <select class="right">
-                                                        <option value="tehran">
-                                                            تهران
-                                                        </option>
-                                                        <option value="esfahan">
-                                                            اصفهان
-                                                        </option>
-                                                        <option value="shiraz">
-                                                            شیراز
-                                                        </option>
-                                                        <option value="tabriz">
-                                                            تبریز
-                                                        </option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 mb-2">
-                                            <div class="form-row-title">
-                                                <h4>
-                                                    آدرس
-                                                </h4>
-                                            </div>
-                                            <div class="form-row">
-                                                    <textarea class="input-ui pr-2 text-right"
-                                                              placeholder=" آدرس را وارد نمایید"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 mb-2">
-                                            <div class="form-row-title">
-                                                <h4>
-                                                    کد پستی
-                                                </h4>
-                                            </div>
-                                            <div class="form-row">
-                                                <input class="input-ui pl-2 dir-ltr text-left placeholder-right"
-                                                       type="text" placeholder=" کد پستی را بدون خط تیره بنویسید">
-                                            </div>
-                                        </div>
-                                        <div class="col-12 pr-4 pl-4">
-                                            <button type="button" class="btn btn-sm btn-primary btn-submit-form">ثبت
-                                            </button>
-                                            <button type="button" class="btn-link-border float-left mt-2">انصراف
-                                                و بازگشت
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-12">
-                            <div class="goole-map">
-                                <div id="map-edit" style="height:440px"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="modal fade" id="remove-location" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -385,13 +234,14 @@
                     <h5 class="modal-title mb-3" id="exampleModalLabel">آیا مطمئنید که
                         این آدرس حذف شود؟</h5>
                 </div>
-                <div class="modal-footer">
+                <div action="" class="modal-footer">
                     <button type="button" class="remodal-general-alert-button remodal-general-alert-button--cancel"
                             data-dismiss="modal">خیر
                     </button>
-                    <button type="button"
-                            class="remodal-general-alert-button remodal-general-alert-button--approve">بله
-                    </button>
+                    <a href=""
+                       id="delete_address"
+                            class="remodal-general-alert-button text-center remodal-general-alert-button--approve">بله
+                    </a>
                 </div>
             </div>
         </div>
@@ -531,8 +381,59 @@
         });
     }
 </script>
+
+<script>
+    $(document).ready(function () {
+        let $provinceSelect = $("select[name='province_id']");
+        let $citySelect = $("select[name='city_id']");
+
+        function fetchCities(provinceId) {
+            $.ajax({
+                url: "<?= url('panel/address/get-city') ?>",
+                method: "POST",
+                data: {province_id: provinceId},
+                dataType: "json",
+                success: function (response) {
+                    $citySelect.empty(); // شهرها را پاک کن
+
+                    if (response.length > 0) {
+                        $.each(response, function (index, city) {
+                            $citySelect.append(`<option value="${city.id}">${city.name}</option>`);
+                        });
+                    } else {
+                        $citySelect.append(`<option value="">شهری یافت نشد</option>`);
+                    }
+
+                    $citySelect.niceSelect("update"); // `nice-select` را بروزرسانی کن
+                },
+                error: function () {
+                    console.error("خطا در دریافت اطلاعات شهرها");
+                }
+            });
+        }
+
+        // رویداد تغییر مقدار استان
+        $provinceSelect.on("change", function () {
+            let selectedProvince = $(this).val();
+            if (selectedProvince) {
+                fetchCities(selectedProvince);
+            }
+        });
+    });
+</script>
+
+<script>
+    document.querySelectorAll('.deleteAddressButton').forEach(deleteAddressButtonItem => {
+        deleteAddressButtonItem.addEventListener('click', function (){
+           let url = deleteAddressButtonItem.getAttribute('data-url');
+           document.querySelector("#delete_address").href=url;
+        });
+    })
+</script>
+
+
 <!-- Main JS File -->
-<script src="./assets/js/main.js"></script>
+<script src="<?= asset('assets/js/main.js') ?>"></script>
 </body>
 
 </html>

@@ -61,7 +61,7 @@ class AuthController extends Controller
 
         $userModel->create($inputs);
         flash('register', 'ثبت نام با موفقیت انجام شد');
-        redirect('auth/login');
+        redirect('welcome');
     }
 
     public function login()

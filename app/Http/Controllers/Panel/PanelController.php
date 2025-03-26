@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Panel;
 
 use App\Http\Controllers\Controller;
 use App\Models\Address;
+use App\Models\City;
 use App\Models\Province;
 use App\Models\User;
 use Core\Auth;
@@ -13,6 +14,13 @@ use Core\Validator;
 
 class PanelController extends Controller
 {
+    public function __construct()
+    {
+        if (!Auth::check()){
+            redirect('auth/login');
+        }
+    }
+
     public function panel()
     {
         $user = Auth::user();
@@ -55,11 +63,28 @@ class PanelController extends Controller
         $addressModel = new Address();
         $addresses = $addressModel->where(['user_id' => $user['id']]);
         $provinceModel = new Province();
-        $cityModel = new Province();
+        $cityModel = new City();
         $provinces = $provinceModel->getAll();
         $cities = $cityModel->getAll();
         return view('app.panel.profile-addresses' ,
          compact('user' , 'provinces' , 'cities' , 'addresses'));
+    }
+
+    function getCity()
+    {
+        $request = new Request();
+        $province_id = $request->all()['province_id'];
+        $cityModel = new City();
+        $cities = $cityModel->where(['province_id' => $province_id]);
+        toJson($cities);
+    }
+    function deleteAddress()
+    {
+        $request = new Request();
+        $address_id = $request->all()['id'];
+        $addressModel = new Address();
+        $addressModel->delete($address_id);
+        redirectBack();
     }
 
     public function storeAddress()
