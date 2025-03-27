@@ -55,7 +55,7 @@
                             </a>
                         </li>
                         <li>
-                            <a >
+                            <a href="<?= url('panel/orders') ?>">
                                 <i class="mdi mdi-basket"></i>
                                 همه سفارش ها
                             </a>

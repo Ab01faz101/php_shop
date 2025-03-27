@@ -26,74 +26,7 @@
     <main class="main-content dt-sl mb-3">
         <div class="container main-container">
             <div class="row">
-                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 sticky-sidebar">
-                    <div class="profile-sidebar dt-sl">
-                        <div class="dt-sl dt-sn border mb-3">
-                            <div class="profile-sidebar-header dt-sl">
-                                <div class="d-flex align-items-center">
-                                    <div class="profile-avatar">
-                                        <img src="./assets/img/theme/avatar.png" alt="">
-                                    </div>
-                                    <div class="profile-header-content mr-3 mt-2">
-                                        <span class="d-block profile-username">نام کاربر</span>
-                                        <span class="d-block profile-phone">09xxxxxxxxx</span>
-                                    </div>
-                                </div>
-                                <div class="profile-link mt-2 dt-sl">
-                                    <div class="row">
-                                        <div class="col-6 text-center">
-                                            <a href="#">
-                                                <i class="mdi mdi-lock-reset"></i>
-                                                <span class="d-block">تغییر رمز</span>
-                                            </a>
-                                        </div>
-                                        <div class="col-6 text-center">
-                                            <a href="#">
-                                                <i class="mdi mdi-logout-variant"></i>
-                                                <span class="d-block">خروج از حساب</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="dt-sl dt-sn border mb-3">
-                            <div class="profile-menu-section dt-sl">
-                                <div class="label-profile-menu mt-2 mb-2">
-                                    <span>حساب کاربری شما</span>
-                                </div>
-                                <div class="profile-menu">
-                                    <ul>
-                                        <li>
-                                            <a href="#" class="active">
-                                                <i class="mdi mdi-account-circle-outline"></i>
-                                                پروفایل
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="mdi mdi-basket"></i>
-                                                همه سفارش ها
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="mdi mdi-sign-direction"></i>
-                                                آدرس ها
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                <i class="mdi mdi-account-edit-outline"></i>
-                                                اطلاعات شخصی
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php view('app.panel.aside', compact('user')) ?>
                 <div class="col-xl-9 col-lg-8 col-md-8 col-sm-12">
                     <div class="row">
                         <div class="col-12">
@@ -108,37 +41,22 @@
                                         <tr>
                                             <th>#</th>
                                             <th>شماره سفارش</th>
-                                            <th>تاریخ ثبت سفارش</th>
                                             <th>مبلغ قابل پرداخت</th>
                                             <th>عملیات پرداخت</th>
-                                            <th>جزئیات</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>57456951</td>
-                                            <td>18 اسفند 1403</td>
-                                            <td>450,000 تومان</td>
-                                            <td>لغو شده</td>
-                                            <td class="details-link">
-                                                <a href="#">
-                                                    <i class="mdi mdi-chevron-left"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>45173498</td>
-                                            <td>18 اسفند 1403</td>
-                                            <td>450,000 تومان</td>
-                                            <td>پرداخت شده</td>
-                                            <td class="details-link">
-                                                <a href="#">
-                                                    <i class="mdi mdi-chevron-left"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
+
+                                        <?php foreach ($orders as $key => $orderItem) { ?>
+                                            <tr>
+                                                <td><?= ++$key ?></td>
+                                                <td><?= $orderItem['tracking_number'] ?></td>
+                                                <td><?= $orderItem['total_price'] ?></td>
+                                                <td>
+                                                    <?= $orderItem['status'] == "paid" ? "پرداخت شده" : "در انتظار پرداخت" ?>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
                                         </tbody>
                                     </table>
                                 </div>

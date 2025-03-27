@@ -5,11 +5,18 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\ProductCategory;
 use App\Models\Todo;
+use Core\Auth;
 use Core\Request;
 use Core\Validator;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        if (Auth::user()['is_admin'] == 0){
+            redirect('404');
+        }
+    }
     public function index()
     {
         $category = new ProductCategory();

@@ -2,14 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\ProductCategory;
+use Core\Auth;
 use Core\FileManager;
 use Core\Request;
 use Core\Validator;
 
 class ProductController
 {
+    public function __construct()
+    {
+        if (Auth::user()['is_admin'] == 0){
+            redirect('404');
+        }
+    }
     public function index()
     {
         $product = new Product();
@@ -97,4 +105,14 @@ class ProductController
         $productModel->delete($id['id']);
         redirect('admin/product');
     }
+
+    public function orders()
+    {
+        $user = Auth::user();
+        $order = new Order();
+        $orders = $order->getAll();
+        return view('admin.order' , compact('orders'));
+    }
+
+
 }

@@ -7,6 +7,8 @@ function dd(...$data)
 
     foreach ($data as $item) {
         echo '<pre style="
+    direction: ltr;
+    text-align: left;
     background-color: rgba(45,45,45,0.94);
     padding: 15px;
     color: #f8f8f2;

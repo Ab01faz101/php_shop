@@ -25,6 +25,11 @@ class HomeController extends Controller
          compact('mobileCategory' ,'webCategory' , 'mobileProducts' , 'webProducts'));
     }
 
+    public function notFound()
+    {
+        return view('app.404');
+    }
+
     public function product()
     {
         $request = new Request();

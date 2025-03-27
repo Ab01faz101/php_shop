@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Panel;
 use App\Http\Controllers\Controller;
 use App\Models\Address;
 use App\Models\City;
+use App\Models\Order;
 use App\Models\Province;
 use App\Models\User;
 use Core\Auth;
@@ -110,6 +111,14 @@ class PanelController extends Controller
         $inputs['user_id'] = $user['id'];
         $addressModel->create($inputs);
         redirectBack();
+    }
+
+    public function orders()
+    {
+        $user = Auth::user();
+        $order = new Order();
+        $orders = $order->where(['user_id' => $user['id']]);
+        return view('app.panel.profile-orders' , compact('user' , 'orders'));
     }
     
 

@@ -21,104 +21,128 @@
     <link rel="stylesheet" href="<?= asset('assets/css/main.css') ?>">
 </head>
 <body>
-    <div class="wrapper shopping-page">
-        <?php view('app.layout.header') ?>
-        <main class="main-content dt-sl mt-4 mb-3">
-            <div class="container main-container">
-                <div class="row">
-                    <div class="cart-page-content col-xl-9 col-lg-8 col-12 px-0">
-                        <section class="page-content dt-sl">
-                            <div class="section-title text-sm-title title-wide no-after-title-wide mb-0 px-res-1">
-                                <h2>خلاصه سفارش</h2>
-                            </div>
-                            <div class="dt-sn dt-sn--box pt-3 pb-3">
-                                <div class="checkout-order-summary">
-                                    <div class="accordion checkout-order-summary-item" id="accordionExample">
-                                        <div class="card border-bottom pt-sl-res">
-                                            <div class="box">
-                                                <div class="row">
-                                                    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                                        <div class="product-box-container">
-                                                            <div class="product-box product-box-compact">
-                                                                <a class="product-box-img">
-                                                                    <img src="./assets/img/products/php7.png">
-                                                                </a>
-                                                                <div class="product-box-title">
-                                                                    php7
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                                        <div class="product-box-container">
-                                                            <div class="product-box product-box-compact">
-                                                                <a class="product-box-img">
-                                                                    <img src="./assets/img/products/ios.png">
-                                                                </a>
-                                                                <div class="product-box-title">
-                                                                    ios
-                                                                </div>
+<div class="wrapper shopping-page">
+    <header class="header-shopping dt-sl">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center pt-2">
+                    <div class="dt-sl">
+                        بهترین سایت آموزشی ایران
+                    </div>
+                </div>
+                <div class="col-12 text-center">
+                    <ul class="checkout-steps">
+                        <li>
+                            <a href="#" class="active">
+                                <span>اطلاعات ارسال</span>
+                            </a>
+                        </li>
+                        <li class="active">
+                            <a href="#" class="active">
+                                <span>پرداخت</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span>اتمام خرید</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="main-content dt-sl mt-4 mb-3">
+        <div class="container main-container">
+            <div class="row">
+                <div class="cart-page-content col-xl-9 col-lg-8 col-12 px-0">
+                    <section class="page-content dt-sl">
+                        <div class="section-title text-sm-title title-wide no-after-title-wide mb-0 px-res-1">
+                            <h2>خلاصه سفارش</h2>
+                        </div>
+                        <div class="dt-sn dt-sn--box pt-3 pb-3">
+                            <div class="checkout-order-summary">
+                                <div class="accordion checkout-order-summary-item" id="accordionExample">
+                                    <div class="card border-bottom pt-sl-res">
+                                        <div class="box">
+                                            <div class="row">
+                                                <?php $price = 0 ?>
+                                                <?php foreach ($orderItems as $cartItem) {
+                                                $productModel = new \App\Models\Product();
+                                                $product = $productModel->find($cartItem["product_id"]);
+                                                $price += $product['price'] * $cartItem['count'];
+                                                ?>
+                                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                                                    <div class="product-box-container">
+                                                        <div class="product-box product-box-compact">
+                                                            <a class="product-box-img">
+                                                                <img src="<?= publicAsset($product['image']) ?>">
+                                                            </a>
+                                                            <div class="product-box-title">
+                                                                <?= $product['name'] ?>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <?php } ?>
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="mt-5">
-                                <a href="#" class="float-right border-bottom-dt"><i
+                        </div>
+                        <div class="mt-5">
+                            <a href="<?= url('order-result') ?>" class="float-right border-bottom-dt"><i
                                         class="mdi mdi-chevron-double-right"></i>بازگشت به مرحله قبل</a>
-                                <a href="#" class="float-left border-bottom-dt">ثبت نهایی سفارش<i
-                                        class="mdi mdi-chevron-double-left"></i></a>
+
+                        </div>
+                    </section>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-12 w-res-sidebar sticky-sidebar">
+                    <div class="dt-sn dt-sn--box border mb-2">
+                        <div class="checkout-summary-content">
+                            <div class="checkout-summary-price-title">مبلغ قابل پرداخت:</div>
+                            <div class="checkout-summary-price-value">
+                                <span class="checkout-summary-price-value-amount"><?= $price ?></span>
+                                تومان
                             </div>
-                        </section>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-12 w-res-sidebar sticky-sidebar">
-                        <div class="dt-sn dt-sn--box border mb-2">
-                            <div class="checkout-summary-content">
-                                <div class="checkout-summary-price-title">مبلغ قابل پرداخت:</div>
-                                <div class="checkout-summary-price-value">
-                                    <span class="checkout-summary-price-value-amount">450,000</span>
-                                    تومان
-                                </div>
-                                <a href="#" class="mb-2 d-block">
-                                    <button class="btn-primary-cm btn-with-icon w-100 text-center pr-0 pl-0">
-                                        <i class="mdi mdi-arrow-left"></i>
-                                        پرداخت و ثبت نهایی سفارش
-                                    </button>
-                                </a>
-                            </div>
+                            <form action="<?= url('confirm-order') ?>" method="POST" class="mb-2 d-block">
+                                <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
+                                <button type="submit" class="btn-primary-cm btn-with-icon w-100 text-center pr-0 pl-0">
+                                    <i class="mdi mdi-arrow-left"></i>
+                                    پرداخت و ثبت نهایی سفارش
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </main>
-        <footer class="mini-footer dt-sl">
-            <div class="container main-container">
-                <div class="row">
-                    <div class="col-md-6 col-sm-12 text-left">
-                        <i class="mdi mdi-phone-outline"></i>
-                        شماره تماس : <a href="#">
-                            33333333
-                            - 031
-                        </a>
-                    </div>
-                    <div class="col-md-6 col-sm-12 text-right">
-                        <i class="mdi mdi-email-outline"></i>
-                        آدرس ایمیل : <a href="#">info@gmail.com</a>
-                    </div>
-                    <div class="col-12 text-center">
-                        <div class="copy-right-mini-footer">
-                            Copyright © 2025 site
-                        </div>
+        </div>
+    </main>
+    <footer class="mini-footer dt-sl">
+        <div class="container main-container">
+            <div class="row">
+                <div class="col-md-6 col-sm-12 text-left">
+                    <i class="mdi mdi-phone-outline"></i>
+                    شماره تماس : <a href="#">
+                        33333333
+                        - 031
+                    </a>
+                </div>
+                <div class="col-md-6 col-sm-12 text-right">
+                    <i class="mdi mdi-email-outline"></i>
+                    آدرس ایمیل : <a href="#">info@gmail.com</a>
+                </div>
+                <div class="col-12 text-center">
+                    <div class="copy-right-mini-footer">
+                        Copyright © 2025 site
                     </div>
                 </div>
             </div>
-        </footer>
-    </div>
-    <script src="<?= asset('assets/js/vendor/jquery-3.4.1.min.js') ?>"></script>
+        </div>
+    </footer>
+</div>    <script src="<?= asset('assets/js/vendor/jquery-3.4.1.min.js') ?>"></script>
     <script src="<?= asset('assets/js/vendor/popper.min.js') ?>"></script>
     <script src="<?= asset('assets/js/vendor/bootstrap.min.js') ?>"></script>
     <script src="<?= asset('assets/js/vendor/bootstrap-slider.min.js') ?>"></script>

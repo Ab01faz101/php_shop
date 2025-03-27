@@ -28,6 +28,8 @@ $router->addRoute('POST', '/admin/product/store', ProductController::class, 'sto
 $router->addRoute('GET', '/admin/product/edit', ProductController::class, 'edit');
 $router->addRoute('POST', '/admin/product/update', ProductController::class, 'update');
 $router->addRoute('POST', '/admin/product/delete', ProductController::class, 'delete');
+// shop
+$router->addRoute('GET', '/admin/orders', ProductController::class, 'orders');
 
 
 
@@ -49,6 +51,7 @@ $router->addRoute('GET', '/auth/logout', AuthController::class,  'logout');
 $router->addRoute('GET', '/panel',PanelController::class, 'panel');
 $router->addRoute('GET', '/panel/personal',PanelController::class, 'personal');
 $router->addRoute('GET', '/panel/address',PanelController::class, 'address');
+$router->addRoute('GET', '/panel/orders',PanelController::class, 'orders');
 $router->addRoute('GET', '/panel/personal/edit',PanelController::class, 'personalEdit');
 $router->addRoute('POST', '/panel/personal/edit',PanelController::class, 'personalUpdate');
 
@@ -61,12 +64,15 @@ $router->addRoute('POST', '/panel/address/get-city',PanelController::class, 'get
 $router->addRoute('GET', '/cart',OrderController::class, 'cart');
 $router->addRoute('GET', '/cart/add',OrderController::class, 'addToCart');
 $router->addRoute('GET', '/cart/remove',OrderController::class, 'removeToCart');
-$router->addRoute('GET', '/cart/plus',OrderController::class, 'removeToCart');
-$router->addRoute('GET', '/cart/min',OrderController::class, 'removeToCart');
+$router->addRoute('GET', '/cart/plus',OrderController::class, 'plus');
+$router->addRoute('GET', '/cart/min',OrderController::class, 'min');
 
 // create order
-$router->addRoute('GET', '/order',OrderController::class, 'order');
-$router->addRoute('POST', '/order/store',OrderController::class, 'orderStore');
+$router->addRoute('GET', '/order-result',OrderController::class, 'order');
+$router->addRoute('POST', '/order-store',OrderController::class, 'orderStore');
+$router->addRoute('GET', '/pay-order',OrderController::class, 'payOrder');
+$router->addRoute('post', '/confirm-order',OrderController::class, 'confirmOrder');
+$router->addRoute('GET', '/success-order',OrderController::class, 'success');
 
 
 
@@ -78,6 +84,7 @@ $router->addRoute('POST', '/order/store',OrderController::class, 'orderStore');
 $router->addRoute('GET', '/', HomeController::class, 'index');
 $router->addRoute('GET', '/welcome', HomeController::class, 'welcome');
 $router->addRoute('GET', '/product', HomeController::class, 'product');
+$router->addRoute('GET', '/404', HomeController::class, 'notFound');
 
 
 $router->resolve();

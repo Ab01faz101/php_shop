@@ -65,7 +65,7 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="Enter.php" class="nav-link">
+                                <a href="<?= url('admin/orders') ?>" class="nav-link">
                                     <i class="fa fa-circle-o nav-icon"></i>
                                     <p>سفارش ها</p>
                                 </a>

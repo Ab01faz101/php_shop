@@ -42,7 +42,7 @@
             <nav class="main-menu d-flex justify-content-md-between justify-content-end dt-sl">
                 <ul class="list hidden-sm">
                     <li class="list-item">
-                        <a class="nav-link" href="#">صفحه اصلی</a>
+                        <a class="nav-link" href="<?=url('/')?>">صفحه اصلی</a>
                     </li>
                     <li class="list-item list-item-has-children menu-col-1">
                         <a class="nav-link" href="#">برنامه نویسی وب</a>
@@ -111,82 +111,11 @@
                 </ul>
                 <div class="nav mr-auto">
                     <div class="nav-item cart--wrapper">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="<?= url('cart') ?>">
                             <span class="label-dropdown">سبد خرید</span>
                             <i class="mdi mdi-cart-outline"></i>
                             <span class="count">2</span>
                         </a>
-                        <div class="header-cart-info">
-                            <div class="header-cart-info-header">
-                                <div class="header-cart-info-count">
-                                    2 درس
-                                </div>
-                                <a href="#" class="header-cart-info-link">
-                                    <span>مشاهده سبد خرید</span>
-                                </a>
-                            </div>
-                            <ul class="header-basket-list do-nice-scroll">
-                                <li class="cart-item">
-                                    <a href="#" class="header-basket-list-item">
-                                        <div class="header-basket-list-item-image">
-                                            <img src="./assets/img/cart/1.png" alt="">
-                                        </div>
-                                        <div class="header-basket-list-item-content">
-                                            <p class="header-basket-list-item-title">
-                                                php7
-                                            </p>
-                                            <div class="header-basket-list-item-footer">
-                                                <div class="header-basket-list-item-props">
-                                                    <span class="header-basket-list-item-props-item">
-                                                        1 x
-                                                    </span>
-                                                </div>
-                                                <button class="header-basket-list-item-remove">
-                                                    <i class="far fa-trash-alt"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="cart-item">
-                                    <a href="#" class="header-basket-list-item">
-                                        <div class="header-basket-list-item-image">
-                                            <img src="./assets/img/cart/2.png" alt="">
-                                        </div>
-                                        <div class="header-basket-list-item-content">
-                                            <p class="header-basket-list-item-title">
-                                                ios
-                                            </p>
-                                            <div class="header-basket-list-item-footer">
-                                                <div class="header-basket-list-item-props">
-                                                    <span class="header-basket-list-item-props-item">
-                                                        1 x
-                                                    </span>
-                                                </div>
-                                                <button class="header-basket-list-item-remove">
-                                                    <i class="far fa-trash-alt"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="header-cart-info-footer">
-                                <div class="header-cart-info-total">
-                                    <span class="header-cart-info-total-text">مبلغ قابل پرداخت:</span>
-                                    <p class="header-cart-info-total-amount">
-                                        <span class="header-cart-info-total-amount-number">
-                                            450,000 <span>تومان</span></span>
-                                    </p>
-                                </div>
-
-                                <div>
-                                    <a href="#" class="header-cart-info-submit">
-                                        ثبت سفارش
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <button class="btn-menu">

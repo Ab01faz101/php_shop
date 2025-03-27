@@ -53,8 +53,15 @@ class BaseModel
         $keys = implode(',', array_keys($data));
         $values = ':' . implode(', :', array_keys($data));
         $stmt = $this->pdo->prepare("INSERT INTO {$this->table} ($keys) VALUES ($values)");
-        return $stmt->execute($data);
+
+        if ($stmt->execute($data)) {
+            $lastId = $this->pdo->lastInsertId();
+            return $this->find($lastId);
+        }
+
+        return false;
     }
+
 
     public function update($id, $data)
     {

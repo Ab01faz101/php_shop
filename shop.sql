@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 24, 2025 at 03:56 PM
+-- Generation Time: Mar 27, 2025 at 06:41 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `addresses` (
   `id` bigint UNSIGNED NOT NULL,
-  `full_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `address` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `province_id` bigint UNSIGNED NOT NULL,
@@ -39,6 +39,13 @@ CREATE TABLE `addresses` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `addresses`
+--
+
+INSERT INTO `addresses` (`id`, `name`, `phone`, `address`, `province_id`, `city_id`, `post_code`, `user_id`, `created_at`, `updated_at`) VALUES
+(2, 'ابوالفضل قائدرحمت', '02156887275', 'khoche shahid naseri', 1, 1, '3761939156', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -54,6 +61,14 @@ CREATE TABLE `carts` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `carts`
+--
+
+INSERT INTO `carts` (`id`, `user_id`, `product_id`, `count`, `created_at`, `updated_at`) VALUES
+(5, 1, 2, 1, NULL, NULL),
+(6, 1, 1, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -554,8 +569,40 @@ CREATE TABLE `orders` (
   `user_id` bigint UNSIGNED NOT NULL,
   `tracking_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `total_price` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address_id` bigint UNSIGNED DEFAULT NULL
+  `address_id` bigint UNSIGNED DEFAULT NULL,
+  `status` enum('awaiting_payment','paid') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'awaiting_payment'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `user_id`, `tracking_number`, `total_price`, `address_id`, `status`) VALUES
+(1, 1, '68689', '500000', 2, 'awaiting_payment'),
+(2, 1, '55730', '500000', 2, 'paid');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_items`
+--
+
+CREATE TABLE `order_items` (
+  `id` int NOT NULL,
+  `order_id` int NOT NULL,
+  `product_id` int NOT NULL,
+  `count` int NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Dumping data for table `order_items`
+--
+
+INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `count`) VALUES
+(1, 1, 2, 1),
+(2, 1, 1, 1),
+(3, 2, 2, 1),
+(4, 2, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -663,25 +710,38 @@ INSERT INTO `provinces` (`id`, `name`, `created_at`, `updated_at`) VALUES
 
 CREATE TABLE `users` (
   `id` bigint UNSIGNED NOT NULL,
-  `first_fname` varchar(255) DEFAULT NULL,
+  `first_name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `last_name` varchar(255) DEFAULT NULL,
   `national_code` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `phone` varchar(255) DEFAULT NULL,
   `profile` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL
+  `password` varchar(255) NOT NULL,
+  `is_admin` tinyint NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `first_fname`, `last_name`, `national_code`, `email`, `phone`, `profile`, `password`) VALUES
-(16, NULL, NULL, NULL, 'ar.rahmatyy@gmail.com', NULL, NULL, 'ar.rahmatyy@gmail.com2');
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `national_code`, `email`, `phone`, `profile`, `password`, `is_admin`) VALUES
+(1, 'نام', 'نام و نام خانوادگی', '402344584', 'ar.rahmatyy@gmail.com', '09363553237', 'public/profiles/flutter.png', 'ar.rahmatyy@gmail.com', 1);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `addresses`
+--
+ALTER TABLE `addresses`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `carts`
+--
+ALTER TABLE `carts`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `cities`
@@ -696,6 +756,18 @@ ALTER TABLE `cities`
 ALTER TABLE `menus`
   ADD PRIMARY KEY (`id`),
   ADD KEY `menus_parent_id_foreign` (`parent_id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `order_items`
+--
+ALTER TABLE `order_items`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `products`
@@ -726,6 +798,18 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `addresses`
+--
+ALTER TABLE `addresses`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `carts`
+--
+ALTER TABLE `carts`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `cities`
 --
 ALTER TABLE `cities`
@@ -736,6 +820,18 @@ ALTER TABLE `cities`
 --
 ALTER TABLE `menus`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `order_items`
+--
+ALTER TABLE `order_items`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -759,7 +855,7 @@ ALTER TABLE `provinces`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
